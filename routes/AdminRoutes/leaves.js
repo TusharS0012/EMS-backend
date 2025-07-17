@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {getAllTodayLeaves, getLeaveById, approveLeave, rejectLeave, getAllLeavesOfEmployee, approveLeave, rejectLeave} from "../../controllers/adminControllers/leave.js";
+import {getAllTodayLeaves, getLeaveById, approveLeave, rejectLeave, getAllLeavesOfEmployee} from "../../controllers/adminControllers/leave.js";
 
 const router = Router();
 
