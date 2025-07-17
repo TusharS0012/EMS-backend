@@ -3,7 +3,7 @@ import { Router } from "express";
 import {
   assignTask,
   // You might add more task-related controllers here, e.g., updateTaskStatus, getEmployeeTasks, deleteTask
-} from "../../controllers/adminControllers/admin.js"; // Assuming assignTask is in admin controller, or you might move it to a task-specific controller
+} from "../../controllers/adminControllers/tasks.js"; // Assuming assignTask is in admin controller, or you might move it to a task-specific controller
 
 const router = Router();
 
