@@ -9,7 +9,13 @@ import xss from "xss-clean";
 import hpp from "hpp";
 import compression from "compression";
 import connectDB from "./config/db.js";
-import employeeRoutes from "./routes/employeeRoutes.js";
+
+// Import all the routes
+import employeeAuthRoutes from "./routes/EmployeeRoutes/auth.js";
+import employeeRoutes from "./routes/EmployeeRoutes/employee.js"; 
+import employeeTaskRoutes from "./routes/EmployeeRoutes/tasks.js"; 
+import adminRoutes from "./routes/AdminRoutes/auth.js"; 
+import departmentRoutes from "./routes/AdminRoutes/department.js";
 
 dotenv.config();
 connectDB();
@@ -33,8 +39,16 @@ const limiter = rateLimit({
 app.use("/api", limiter);
 
 // Routes
-// app.use("/api/employees", employeeRoutes);
+// Employee Authentication routes
+app.use("/api/auth/employee", employeeAuthRoutes);
 
+// Employee Panel routes
+app.use("/api/employee", employeeRoutes);
+app.use("/api/employee/tasks", employeeTaskRoutes); // Employee's view of tasks
+
+// HR/Admin Panel routes
+app.use("/api/admin", adminRoutes);
+app.use("/api/admin/departments", departmentRoutes); // Admin department routes
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
