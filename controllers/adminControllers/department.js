@@ -1,5 +1,5 @@
 import departmentModel from "../../models/departmentModel.js";
-import employeeModel from "../../models/employeeModel.js"; // Added missing import for employeeModel
+import employeeModel from "../../models/employeeModel.js";
 
 export const getAllDepartments = async (req, res) => {
   try {
@@ -25,6 +25,11 @@ export const createDepartment = async (req, res) => {
       .status(201)
       .json({ message: "Department created successfully", department });
   } catch (error) {
+    if (error.code === 11000) {
+      return res
+        .status(409)
+        .json({ message: "A department with this name already exists." });
+    }
     res
       .status(500)
       .json({ message: "Error creating department", error: error.message });
@@ -33,8 +38,8 @@ export const createDepartment = async (req, res) => {
 
 export const blockDepartment = async (req, res) => {
   try {
-    const { departmentId } = req.body;
-    const department = await departmentModel.findById(departmentId);
+    const { id } = req.params;
+    const department = await departmentModel.findById(id);
     if (!department) {
       return res.status(404).json({ message: "Department not found" });
     }
@@ -57,11 +62,10 @@ export const blockDepartment = async (req, res) => {
 
 export const updateDepartment = async (req, res) => {
   try {
-    const { departmentId, name, description } = req.body;
-    if (!departmentId) {
-      return res.status(400).json({ message: "Department ID is required" });
-    }
-    const department = await departmentModel.findById(departmentId);
+    const { id } = req.params;
+    const { name, description } = req.body;
+
+    const department = await departmentModel.findById(id);
     if (!department) {
       return res.status(404).json({ message: "Department not found" });
     }
@@ -86,8 +90,8 @@ export const updateDepartment = async (req, res) => {
 
 export const activateBlockedDepartment = async (req, res) => {
   try {
-    const { departmentId } = req.body;
-    const department = await departmentModel.findById(departmentId);
+    const { id } = req.params;
+    const department = await departmentModel.findById(id);
     if (!department) {
       return res.status(404).json({ message: "Department not found" });
     }
