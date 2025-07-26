@@ -11,6 +11,6 @@ const router = Router();
 router.post("/register", registerEmployee);
 router.post("/login", loginEmployee);
 router.post("/forgot-password", forgotPassword);
-router.post("/reset-password", resetPassword);
+router.post("/:employeeId/reset-password", resetPassword);
 
 export default router;

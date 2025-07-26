@@ -1,5 +1,5 @@
 // controllers/employeeControllers/task.js
-import Task from "../../models/Task.js"; // Import the Task model
+import Task from "../../models/taskModel.js"; // Import the Task model
 
 export const getMyTasks = async (req, res) => {
     // Controller logic for getting tasks assigned to the authenticated employee
