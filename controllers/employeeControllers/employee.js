@@ -1,8 +1,8 @@
 // employee.js
-import User from "../models/employeeModel.js"; 
-import Attendance from "../models/attendanceModel.js"; 
-import Leave from "../models/leaveRequestModel.js"; 
-import Payroll from "../models/payrollModel.js"; 
+import User from "../../models/employeeModel.js"; 
+import Attendance from "../../models/attendanceModel.js"; 
+import Leave from "../../models/leaveRequestModel.js"; 
+import Payroll from "../../models/payrollModel.js"; 
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
